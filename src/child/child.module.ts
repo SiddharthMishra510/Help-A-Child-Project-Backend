@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { ChildController } from './child.controller';
-import { ChildService } from './child.service';
+import { ChildrenController } from './children.controller';
+import { ChildrenService } from './children.service';
 
 @Module({
   imports: [],
-  controllers: [ChildController],
-  providers: [ChildService],
+  controllers: [ChildrenController],
+  providers: [ChildrenService],
 })
 export class ChildModule {}

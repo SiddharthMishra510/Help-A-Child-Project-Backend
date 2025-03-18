@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   postgres:
-    image: postgres:15
+    image: postgres
     container_name: nest_postgres
     restart: always
     environment:
@@ -10,24 +10,9 @@ services:
       POSTGRES_PASSWORD: nestpassword
       POSTGRES_DB: nestdb
     ports:
-      - "5432:5432"
+      - '5432:5432'
     volumes:
       - postgres_data:/var/lib/postgresql/data
-
-  backend:
-    build: .
-    container_name: nest_backend
-    restart: always
-    depends_on:
-      - postgres
-    ports:
-      - "3000:3000"
-    environment:
-      DATABASE_URL: postgres://nestuser:nestpassword@postgres:5432/nestdb
-    volumes:
-      - .:/app
-      - /app/node_modules
-    command: npm run start:dev
 
 volumes:
   postgres_data:
