@@ -8,12 +8,12 @@ export class ChildrenController {
   constructor(private childrenService: ChildrenService) {}
 
   @Post()
-  create(@Body() createChildDto: CreateChildDto): Child {
+  async create(@Body() createChildDto: CreateChildDto): Promise<Child> {
     return this.childrenService.create(createChildDto);
   }
 
   @Get()
-  findAll(): Promise<Child[]> {
+  async findAll(): Promise<Child[]> {
     return this.childrenService.findAll();
   }
 }

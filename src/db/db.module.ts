@@ -1,16 +1,21 @@
 import { Module } from '@nestjs/common';
 import { drizzle } from 'drizzle-orm/node-postgres';
-import { Client } from 'pg';
-import dotenv from 'dotenv';
+import { Pool } from 'pg';
+import * as schema from './schema';
+import * as process from 'node:process';
 
-dotenv.config();
-
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
+const pool = new Pool({
+  user: 'nestuser',
+  password: 'nestpassword',
+  host: "localhost",
+  port: 5432,
+  database: "nestdb",
 });
-client.connect();
 
-export const db = drizzle(client);
+export const db = drizzle(pool, { schema });
 
-@Module({})
+@Module({
+  providers: [{ provide: 'DATABASE', useValue: db }],
+  exports: ['DATABASE'],
+})
 export class DatabaseModule {}

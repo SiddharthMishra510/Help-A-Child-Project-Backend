@@ -1,0 +1,1 @@
+ALTER TABLE "children" DROP COLUMN "created_at";
