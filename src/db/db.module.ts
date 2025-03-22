@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { Pool } from 'pg';
 import * as schema from './schema';
-import * as process from 'node:process';
 
 const pool = new Pool({
   user: 'nestuser',
