@@ -30,4 +30,8 @@ export class ChildrenService {
   findAll(): Promise<Child[]> {
     return this.database.select().from(children);
   }
+
+  async deleteAll() {
+    await this.database.delete(children);
+  }
 }

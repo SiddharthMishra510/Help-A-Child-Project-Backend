@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Delete } from '@nestjs/common';
 import { CreateChildDto } from './dto/create-children.dto';
 import { ChildrenService } from './children.service';
 import { Child } from './interfaces/child.interface';
@@ -15,5 +15,10 @@ export class ChildrenController {
   @Get()
   async findAll(): Promise<Child[]> {
     return this.childrenService.findAll();
+  }
+
+  @Delete()
+  async deleteAll() {
+    this.childrenService.deleteAll();
   }
 }
