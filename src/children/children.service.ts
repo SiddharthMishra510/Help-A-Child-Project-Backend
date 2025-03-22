@@ -48,7 +48,7 @@ export class ChildrenService {
   }
 
   async addDonation(id: string, amount: number): Promise<Child> {
-    if (!number.amount || number.amount <= 0) {
+    if (!amount || amount <= 0) {
       throw new BadRequestException("Invalid donation amount.");
     }
 
