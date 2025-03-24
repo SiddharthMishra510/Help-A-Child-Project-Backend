@@ -26,6 +26,15 @@ export class ChildrenController {
     return this.childrenService.findAll();
   }
 
+  @Get(":id")
+  async find(@Param("id") id: string): Promise<Child> {
+    const child = await this.childrenService.find(id);
+    if (!child) {
+      throw new NotFoundException("Child not found");
+    }
+    return child;
+  }
+
   @Put(":id/donate")
   async addDonation(@Param("id") id: string, @Body() body: { amount: number }) {
     return this.childrenService.addDonation(id, body.amount);

@@ -73,4 +73,18 @@ export class ChildrenService {
 
     return updatedChild[0];
   }
+
+  async find(id: string): Promise<Child> {
+    const child = await this.database
+      .select()
+      .from(children)
+      .where(eq(children.id, id))
+      .limit(1);
+
+    if (child.length === 0) {
+      throw new NotFoundException(`Child with id ${id} not found.`);
+    }
+
+    return child[0];
+  }
 }
