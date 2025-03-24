@@ -6,4 +6,5 @@ export const children = pgTable("children", {
   photo: text("photo").notNull().default("default-photo.jpg"),
   careerGoal: text("career_goal").notNull().default("Not specified"),
   amountDonated: integer("amount_donated").default(0).notNull(),
+  donationRequired: integer("donation_required").default(0).notNull(),
 });

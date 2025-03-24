@@ -1,0 +1,1 @@
+ALTER TABLE "children" ADD COLUMN "donation_required" integer DEFAULT 0 NOT NULL;

@@ -33,6 +33,7 @@ export class ChildrenService {
         photo: child.photo,
         careerGoal: child.careerGoal,
         amountDonated: child.amountDonated,
+        donationRequired: 1000, // TODO: FIX LATER
       })
       .returning();
 
