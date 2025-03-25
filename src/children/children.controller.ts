@@ -6,17 +6,20 @@ import {
   Delete,
   Put,
   Param,
+  UseGuards,
   NotFoundException,
 } from "@nestjs/common";
 import { CreateChildDto } from "./dto/create-child.dto";
 import { ChildrenService } from "./children.service";
 import { Child } from "./interfaces/child.interface";
+import { AuthGuard } from "@nestjs/passport";
 
 @Controller("children")
 export class ChildrenController {
   constructor(private childrenService: ChildrenService) {}
 
   @Post()
+  @UseGuards(AuthGuard("jwt"))
   async create(@Body() createChildDto: CreateChildDto): Promise<Child> {
     return this.childrenService.create(createChildDto);
   }
@@ -41,6 +44,7 @@ export class ChildrenController {
   }
 
   @Delete()
+  @UseGuards(AuthGuard("jwt"))
   async deleteAll() {
     await this.childrenService.deleteAll();
   }
