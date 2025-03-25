@@ -43,6 +43,20 @@
       "when": 1742674194825,
       "tag": "0005_clever_sue_storm",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1742835441341,
+      "tag": "0006_rich_omega_sentinel",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1742850378543,
+      "tag": "0007_mixed_black_knight",
+      "breakpoints": true
     }
   ]
 }
