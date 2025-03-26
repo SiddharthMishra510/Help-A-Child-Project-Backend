@@ -48,13 +48,14 @@ This runs the app on **port 3000**. Feel free to update it in package.json.
 
 ## 🎯 API Endpoints Overview
 
-| Method | Endpoint             | Description                    | Access    |
-|--------|----------------------|--------------------------------|-----------|
-| GET    | `/children`          | Get list of children          | Public    |
-| GET    | `/children/:id`      | Get details of a child        | Public    |
-| PUT    | `/children/:id`      | Update child details          | Public     |
-| DELETE | `/children/:id`      | Delete a child                | Admin     |
-| POST   | `/auth/login`        | Login and get JWT token       | Public    |
+| Method | Endpoint         | Description             | Access    |
+|--------|------------------|-------------------------|-----------|
+| POST   | `/children`      | Create a new child      | Admin    |
+| GET    | `/children`      | Get list of children    | Public    |
+| GET    | `/children/:id`  | Get details of a child  | Public    |
+| PUT    | `/children/:id`  | Update child details    | Public     |
+| DELETE | `/children`      | Delete all children     | Admin     |
+| POST   | `/auth/login`    | Login and get JWT token | Public    |
 
 ## 🎯 Contributing
 
