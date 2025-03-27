@@ -68,3 +68,12 @@ This runs the app on **port 3000**. Feel free to update it in package.json.
 | PUT    | `/children/:id`  | Update child details    | Public     |
 | DELETE | `/children`      | Delete all children     | Admin     |
 | POST   | `/auth/login`    | Login and get JWT token | Public    |
+
+
+## 🎯 Login
+
+for now, the only allowed login credentials are:
+{
+"email": "testuser@example.com",
+"password": "securepassword123"
+}
