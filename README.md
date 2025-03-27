@@ -33,14 +33,26 @@ npm install
 ### 3️⃣ Set up environment variables
 Create a `.env` file in the root directory and configure the required variables:
 ```env
-DB_NAME=nestdb
-DB_HOST=localhost
-DB_USER=nestuser
-DB_PORT=5432
-DB_PASSWORD=nestpassword
+DB_NAME
+DB_HOST
+DB_USER
+DB_PORT
+DB_PASSWORD
+SECRET_KEY
+JWT_EXPIRATION
 ```
 
-### 5️⃣ Start the backend server
+### 5️⃣ Start PostgreSQL container with Docker Compose
+```sh
+docker-compose up -d
+```
+
+### 4️⃣ Run database migrations
+```sh
+npm run migrate
+```
+
+### 6️⃣ Start the backend server
 ```sh
 npm run start
 ```
@@ -56,10 +68,3 @@ This runs the app on **port 3000**. Feel free to update it in package.json.
 | PUT    | `/children/:id`  | Update child details    | Public     |
 | DELETE | `/children`      | Delete all children     | Admin     |
 | POST   | `/auth/login`    | Login and get JWT token | Public    |
-
-## 🎯 Contributing
-
-Contributions are welcome! Feel free to open **issues** and **pull requests**.
-
----
-
