@@ -9,13 +9,13 @@ This is the **backend** for the *Help A Child* project, a platform to **track an
 ✅ API to fetch **list of children** along with their donation requirements  
 ✅ **Donate** to support a child’s future  
 ✅ **Admin-only**: Add and remove children  
-✅ **JWT-based authentication** for secure access for admin
+✅ **JWT-based auth** for secure access for admin
 
 ## 🛠 Tech Stack
 
 - **Backend**: NestJS (Node.js framework)
 - **Database**: PostgreSQL (with Drizzle ORM)
-- **Authentication**: JWT (JSON Web Tokens)
+- **Auth**: JWT (JSON Web Tokens)
 
 ## 🔧 Setup & Installation
 
