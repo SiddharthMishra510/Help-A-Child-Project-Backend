@@ -18,4 +18,12 @@ export class UsersService {
       .where(eq(users.email, email));
     return usersList.length > 0 ? usersList[0] : null;
   }
+
+  async createUser(email: string, password: string): Promise<User> {
+    const [newUser] = await db
+      .insert(users)
+      .values({ email, password })
+      .returning();
+    return newUser;
+  }
 }

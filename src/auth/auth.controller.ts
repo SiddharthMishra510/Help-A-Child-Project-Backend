@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from "@nestjs/common";
+import { Controller, Post, Body, BadRequestException } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 
 @Controller("auth")
@@ -11,5 +11,16 @@ export class AuthController {
     @Body("password") password: string,
   ): Promise<{ token: string }> {
     return this.authService.login(email, password);
+  }
+
+  @Post("signup")
+  async signup(
+    @Body("email") email: string,
+    @Body("password") password: string,
+  ): Promise<{ token: string }> {
+    if (!password) {
+      throw new BadRequestException("Password is required");
+    }
+    return this.authService.signup(email, password);
   }
 }

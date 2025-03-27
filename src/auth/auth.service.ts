@@ -1,12 +1,11 @@
-import { Injectable, UnauthorizedException } from "@nestjs/common";
+import {
+  Injectable,
+  ConflictException,
+  UnauthorizedException,
+} from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
-import { UsersService } from "../users/users.service";
-
-interface User {
-  id: number;
-  email: string;
-  password: string;
-}
+import { User, UsersService } from "../users/users.service";
+import * as bcrypt from "bcrypt";
 
 @Injectable()
 export class AuthService {
@@ -17,13 +16,10 @@ export class AuthService {
 
   async validateUser(email: string, password: string): Promise<User> {
     const user = await this.usersService.findByEmail(email);
-    if (!user)
-      throw new UnauthorizedException(
-        "Invalid credentials, couldn't find email.",
-      );
-    const passwordValid = password === user.password;
-    if (!passwordValid)
-      throw new UnauthorizedException("Invalid credentials, wrong password.");
+    if (!user) throw new UnauthorizedException("Invalid credentials.");
+
+    const passwordValid = await bcrypt.compare(password, user.password);
+    if (!passwordValid) throw new UnauthorizedException("Invalid credentials.");
 
     return user;
   }
@@ -31,6 +27,22 @@ export class AuthService {
   async login(email: string, password: string): Promise<{ token: string }> {
     const user = await this.validateUser(email, password);
     const payload = { sub: user.id, email: user.email };
+    const token = this.jwtService.sign(payload);
+    return { token };
+  }
+
+  async signup(email: string, password: string): Promise<{ token: string }> {
+    const existingUser = await this.usersService.findByEmail(email);
+    if (existingUser) throw new ConflictException("Email already in use.");
+
+    if (!password) {
+      throw new UnauthorizedException("Passwords cannot be empty.");
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = await this.usersService.createUser(email, hashedPassword);
+
+    const payload = { sub: newUser.id, email: newUser.email };
     const token = this.jwtService.sign(payload);
 
     return { token };
